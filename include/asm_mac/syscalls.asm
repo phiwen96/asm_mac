@@ -12,6 +12,8 @@
 
 ; File operations
 %define sys_rename	82	; Rename a file
+%define sys_open	2	; Open and possibly create a file
+%define sys_close	3	; Close a file descriptor
 
 ; Directory operations
 
@@ -36,9 +38,13 @@
     %define sys_getrandom	318	 ; Obtain a series of random bytes
 
 %elif System == Darwin 
+;0x2000001
+    %define sys_exit 1
+    %define sys_write 4
+    %define sys_read 3
+    %define sys_open 5
+    %define sys_close 6
 
-    %define sys_exit 0x2000001
-    %define sys_write 0x2000004
-    %define sys_read 2
+    %define sys_chdir	12	; Change working directory
 
 %endif
