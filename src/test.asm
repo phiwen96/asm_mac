@@ -1,7 +1,7 @@
 %include "macros.asm"
 
 
-global _start
+global _main
 
 section .data
 message: define_byte "Ahe{jda", 10
@@ -12,7 +12,7 @@ section .text
 
 %assign CAP 'a' - 'A'
 
-_start:
+_main:
 	mov preserved (0), message
 	mov preserved (1), length
 

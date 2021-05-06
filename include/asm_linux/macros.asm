@@ -37,8 +37,12 @@
 ; ####################################################
 ; exit
 ; ####################################################
+
 %macro exit 0
-	mov rax, sys_exit 
+	mov rax, 0x2000001
+ 
+
+	; mov rax, sys_exit 
 	mov rdi, 0 ; int status 
 	syscall
 %endmacro
@@ -50,7 +54,8 @@
 ; print string to screen 
 ; ####################################################
 %macro _cout 2
-	mov rax, sys_write
+mov rax, sys_write
+	; mov rax, sys_write
 	mov arg (0), fd_stdout
 	mov arg_1, %1
 	mov arg_2, %2
