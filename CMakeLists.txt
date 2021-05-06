@@ -12,6 +12,8 @@ set (_Processor -1)
 
 if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64")
     set (_Processor 0)
+else ()
+    message (FATAL_ERROR "unknown processor")
 endif ()
 
 set (_System -1)
@@ -21,12 +23,17 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (_System 0)
     # add_compile_definitions (Darwin)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-set (_System 1)
+    set (_System 1)
     # add_compile_definitions (Linux)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-set (_System 2)
+    message (FATAL_ERROR "not yet defined for Windows")
+
+    set (_System 2)
     # add_compile_definitions (Windows)
-endif()
+else ()
+    message (FATAL_ERROR "unknown system ${CMAKE_SYSTEM_NAME}")
+endif ()
+
 
 add_compile_options(
     "$<$<COMPILE_LANGUAGE:ASM_NASM>:-f $<IF:$<BOOL:$<TARGET_PROPERTY:NASM_OBJ_FORMAT>>, \
