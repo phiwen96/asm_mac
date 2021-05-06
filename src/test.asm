@@ -13,7 +13,7 @@ section .text
 %assign CAP 'a' - 'A'
 
 _main:
-	%if Darwin
+	%if !System == Darwin
 		jmp end
 	%endif
 	mov preserved (0), message

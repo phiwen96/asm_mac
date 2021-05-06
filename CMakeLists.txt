@@ -7,13 +7,24 @@ set (_Windows 0)
 
 enable_language(ASM_NASM)
 
+
+set (_Processor -1)
+
+if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64")
+    set (_Processor 0)
+endif ()
+
+set (_System -1)
+
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 # message("Darwin")
-    set (_Darwin 1)
+    set (_System 0)
     # add_compile_definitions (Darwin)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+set (_System 1)
     # add_compile_definitions (Linux)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+set (_System 2)
     # add_compile_definitions (Windows)
 endif()
 

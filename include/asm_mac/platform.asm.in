@@ -1,3 +1,0 @@
-%define Darwin @_Darwin@
-%define Linux @_Linux@
-%define Windows @_Windows@

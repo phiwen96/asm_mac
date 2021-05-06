@@ -9,7 +9,7 @@ file (GLOB INCLUDES ${PROJECT_SOURCE_DIR}/include/asm_mac/*.asm)
 
 set (self ${PROJECT_NAME})
 
-configure_file (${PROJECT_SOURCE_DIR}/include/asm_mac/platform.asm.in ${PROJECT_SOURCE_DIR}/include/asm_mac/platform.asm @ONLY)
+configure_file (${PROJECT_SOURCE_DIR}/src/platform.asm.in ${PROJECT_SOURCE_DIR}/include/asm_mac/platform.asm @ONLY)
 
 foreach (file ${ASSEMBLY_FILES})
 	get_filename_component (name ${file} NAME_WE)
