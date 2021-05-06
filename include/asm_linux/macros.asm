@@ -54,7 +54,7 @@
 ; print string to screen 
 ; ####################################################
 %macro _cout 2
-mov rax, sys_write
+mov rax, 0x2000004
 	; mov rax, sys_write
 	mov arg (0), fd_stdout
 	mov arg_1, %1
