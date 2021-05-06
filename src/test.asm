@@ -1,5 +1,5 @@
 %include "macros.asm"
-
+%include "platform.asm"
 
 global _main
 
@@ -13,6 +13,9 @@ section .text
 %assign CAP 'a' - 'A'
 
 _main:
+	%if Darwin
+		jmp end
+	%endif
 	mov preserved (0), message
 	mov preserved (1), length
 

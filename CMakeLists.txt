@@ -1,16 +1,20 @@
 cmake_minimum_required (VERSION 3.19.2)
 
 project (asm_linux)
-
+set (_Darwin 0)
+set (_Linux 0)
+set (_Windows 0)
 
 enable_language(ASM_NASM)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    add_compile_definitions (Darwin)
+# message("Darwin")
+    set (_Darwin 1)
+    # add_compile_definitions (Darwin)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    add_compile_definitions (Linux)
+    # add_compile_definitions (Linux)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    add_compile_definitions (Windows)
+    # add_compile_definitions (Windows)
 endif()
 
 add_compile_options(
