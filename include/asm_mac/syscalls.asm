@@ -1,4 +1,4 @@
-%include platform
+%include "platform.asm"
 
 %if System == Linux
 
@@ -39,12 +39,16 @@
 
 %elif System == Darwin 
 ;0x2000001
-    %define sys_exit 1
-    %define sys_write 4
-    %define sys_read 3
-    %define sys_open 5
-    %define sys_close 6
+    %define sys_exit 0x2000001
+    %define sys_write 0x2000004
+    %define sys_read 0x2000003
+    %define sys_open 0x2000005
+    %define sys_close 0x2000006
 
-    %define sys_chdir	12	; Change working directory
+    %define sys_chdir	0x2000012	; Change working directory
 
 %endif
+
+%define fd_stdin 0  ; Input from the keyboard
+%define fd_stdout 1 ; Output to the console
+%define fd_stderr 2 ;Error output to the console

@@ -1,3 +1,4 @@
+%include "syscalls.asm"
 %define quot "
 
 
@@ -22,12 +23,8 @@
 %define define_word dw ; 16 bits
 %define define_double dd ; 32 bits
 
-%define sys_exit 60
-%define sys_write 1
-%define sys_read 2
 
-%define fd_stdout 1 ; file descriptor 1: Standard Output
-%define fd_stdin 0 ; file descriptor 0: Standard Input
+
 
 
 %assign i 0
@@ -54,7 +51,7 @@
 ; print string to screen 
 ; ####################################################
 %macro _cout 2
-mov rax, 0x2000004
+mov rax, sys_write
 	; mov rax, sys_write
 	mov arg (0), fd_stdout
 	mov arg_1, %1
@@ -63,6 +60,16 @@ mov rax, 0x2000004
 %endmacro
 
 %define cout(str, len) _cout str, len
+
+%macro _cin 2
+	mov rax, sys_read
+	mov arg (0), fd_stdin
+	mov arg (1), %1
+	mov arg (2), %2
+	syscall
+%endmacro
+
+%define cin(buff, len) _cin buff, len
 
 
 

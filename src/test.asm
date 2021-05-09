@@ -1,11 +1,15 @@
 %include "macros.asm"
-%include "platform.asm"
+; %include "platform.asm"
 
 global _main
 
 section .data
 message: define_byte "Ahe{jda", 10
 length: equ $-message
+
+section .bss
+bufflen equ 16
+buff: resb bufflen
 
 
 section .text 
@@ -43,8 +47,6 @@ end_loop:
 	
 
 jmp end
-
-
 	mov rbx, 999
 
 
@@ -54,6 +56,10 @@ jmp end
 
 
 end:
+	cin (buff, bufflen)
+	
+	
+
 	exit
 
 
