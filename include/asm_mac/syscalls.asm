@@ -1,10 +1,7 @@
 %include "platform.asm"
 
 %if System == Linux
-
-    %define sys_exit 60
-
-; Read/Write
+    %define sys_exit 60 ; Read/Write
     %define sys_write 1  ; Write to a file descriptor
     %define sys_read 0 ; Read from a file descriptor
     %define sys_readv 19 ; Read data into multiple buffers

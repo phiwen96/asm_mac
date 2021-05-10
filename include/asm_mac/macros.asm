@@ -36,7 +36,7 @@
 ; ####################################################
 
 %macro exit 0
-	mov rax, 0x2000001
+	mov rax, sys_exit
  
 
 	; mov rax, sys_exit 
