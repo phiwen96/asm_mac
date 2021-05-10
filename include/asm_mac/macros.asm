@@ -72,6 +72,27 @@ mov rax, sys_write
 %define cin(buff, len) _cin buff, len
 
 
+%macro __for 2
+	push preserved (0)
+	mov preserved (0), %1
+	%%foor:
+		call %2
+		; cout (buff, strlen)
+		dec preserved (0)
+		cmp preserved (0), 0
+		jg %%foor
+
+	
+		pop preserved (0)
+
+	
+
+%endmacro 
+
+%define for(i, label) __for i, label
+
+
+
 
 ; ####################################################
 ; "Scratch" registers, any function is allowed 
