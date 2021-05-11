@@ -50,8 +50,15 @@
 ;
 ; print string to screen 
 ; ####################################################
+
+
+
+
+
 %macro _cout 2
-mov rax, sys_write
+
+
+	mov rax, sys_write
 	; mov rax, sys_write
 	mov arg (0), fd_stdout
 	mov arg_1, %1
@@ -60,6 +67,32 @@ mov rax, sys_write
 %endmacro
 
 %define cout(str, len) _cout str, len
+
+
+; sz - defines a zero terminated string
+%macro _out_prep_data 2
+  jmp %%1_after_def    ; jump over the string that we define
+  %1 db %2, 0         ; declare the string
+  %1_len equ $-%1 
+  %%1_after_def:       ; continue on
+%endmacro
+
+%define out_prep_data(var_name, string) _out_prep_data var_name, string
+
+
+%macro _out 1
+  jmp %%1_after_def    ; jump over the string that we define
+  %%lol db %1, 10         ; declare the string
+  %%1_after_def:       ; continue on
+  %%s: equ $-%%lol
+  cout (%%lol, %%s)
+%endmacro
+
+%define out(msg) _out msg
+
+
+
+
 
 %macro _cin 2
 	mov rax, sys_read
@@ -70,6 +103,7 @@ mov rax, sys_write
 %endmacro
 
 %define cin(buff, len) _cin buff, len
+
 
 
 %macro __for 2

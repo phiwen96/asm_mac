@@ -29,7 +29,7 @@ section .text
 
 _main:
 	mov arg (0), 2
-	call _lol_begin
+	; call _lol_begin
 
 	; cin (buff, bufflen)
 	; cout (buff, bufflen)
@@ -44,12 +44,21 @@ _main:
 
 
 _end:
-	mov rax, 60
- 
 
-	; mov rax, sys_exit 
-	mov rdi, 0 ; int status 
-	syscall
+	_out "A"
+	out ('\r\n')
+	out ("B\n")
+	out ("C")
+	; out_prep_data_2 (kuk2, "This is much more interesting than Hello, World!")
+
+
+
+	; cout (kuk, kuk_len)
+	; out ("This is much more interesting than Hello, World!")
+
+	; cout (message, length)
+	; out ("hejsan")
+	exit
 
 ; _lol:
 ; 	cout (buff, strlen)
