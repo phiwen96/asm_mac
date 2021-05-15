@@ -5,4 +5,5 @@
 
 
 %define x86_64 0
+%define arm64 1
 %define Processor @_Processor@
